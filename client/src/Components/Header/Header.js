@@ -9,7 +9,7 @@ const Header = () => {
             <h1>COSMOS ODYSSEY</h1>
             <nav>
                 <p><Link to='/' >SEARCH</Link></p>
-                <p className='margin' ><Link>BOOKINGS</Link></p>
+                <p className='margin' ><Link to='/bookings' >BOOKINGS</Link></p>
             </nav>
         </header>
     );

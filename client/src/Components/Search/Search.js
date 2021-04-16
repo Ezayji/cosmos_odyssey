@@ -3,6 +3,7 @@ import React from 'react';
 import queryString from 'query-string';
 
 import Header from '../Header/Header';
+import SearchResult from '../SearchResult/SearchResult';
 
 const Search = ({ location }) => {
     // console.log(location.search);

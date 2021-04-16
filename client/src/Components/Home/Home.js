@@ -25,7 +25,6 @@ const Home = ({ history }) => {
             <div className='home-content-wrapper' >
                 <div className='home-logo' >
                     <h1>COSMOS ODYSSEY</h1>
-                    <h3>The finest space travel offers</h3>
                 </div>
                 <form onSubmit={onSubmit} className='route-selector' >
                     <div className='route-options' >
@@ -52,12 +51,7 @@ const Home = ({ history }) => {
 };
 
 /*
-<div className='route-selector' >
-
-                </div>
-                <div className='home-link-wrapper' >
-                    <p><Link to='/search?from=Mars&to=Jupiter' >Find your dream deal</Link></p>
-                </div>
+<h3>The finest space travel offers</h3>
 */
 
 export default Home;
