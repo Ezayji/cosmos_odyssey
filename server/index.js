@@ -17,6 +17,13 @@ app.use(express.urlencoded({
     extended: true,
 }));
 
+// routes
+const flightsRouter = require('./routes/flights');
+app.use('/api/flights', flightsRouter);
+
+const bookingsRouter = require('./routes/bookings');
+app.use('/api/bookings', bookingsRouter);
+
 // server initialization
 app.listen(PORT, () => {
     console.log(`The app is now listening on port ${PORT}`);

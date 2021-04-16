@@ -1,14 +1,23 @@
 import './Home.css';
 import React, { useState, useEffect } from 'react';
 
-import { flightPaths } from '../../Flight_Paths/flightPaths';
+const destinations = [
+    'Mercury',
+    'Venus',
+    'Earth',
+    'Mars',
+    'Jupiter',
+    'Saturn',
+    'Uranus',
+    'Neptune'
+];
 
 const Home = ({ history }) => {
 
     const [ from, setFrom ] = useState('');
     const [ to, setTo ] = useState('');
 
-    const planets = Object.keys(flightPaths).map((item, i) => (
+    const planets = destinations.map((item, i) => (
         <option key={i} value={item} >{item}</option>
     ));
 

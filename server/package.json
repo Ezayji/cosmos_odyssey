@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha ./test/",
+    "start": "nodemon index.js"
   },
   "author": "Ezayji",
   "license": "MIT",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
+    "dotenv": "^8.2.0",
     "mocha": "^8.3.2",
     "nodemon": "^2.0.7"
   }
