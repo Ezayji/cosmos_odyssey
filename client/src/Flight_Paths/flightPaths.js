@@ -1,4 +1,4 @@
-
+// export  
 export const flightPaths = {
     'Mercury': ['Venus'],
     'Venus': ['Mercury', 'Earth'],
@@ -17,15 +17,15 @@ const findPossiblePath = (graph, current, target, visited=[]) => {
     if(current === target){ 
         return visited
     }
-    
-    for(const vertex of graph[current]){
 
+    for(const vertex of graph[current]){
+    
         if(!visited.includes(vertex)){
-                
+              
             const path = findPossiblePath(graph, vertex, target, visited);
-            if(path) return path;
+            if (path) return path;
             
-        }
+        };
         
     };
     
@@ -33,8 +33,8 @@ const findPossiblePath = (graph, current, target, visited=[]) => {
     
 };
 
-// console.log(findPossiblePath(flightPaths, 'Earth', 'Mercury'))
+// console.log(findPossiblePath(flightPaths, 'Jupiter', 'Mercury'))
 
-const findEfficientPath = () => {
+const findPossiblePaths = (graph, current, target) => {
 
 };

@@ -76,13 +76,13 @@ code {
     monospace;
 }
 
-h1 {
+/* h1 {
   font-family: 'Teko';
   font-size: 110px;
   margin-top: -8px;
   margin-bottom: -18px;
   margin-right: 5px;
-}
+} */
 
 select{
   font-family: 'Lexend';
