@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const { autoPriceUpdate } = require('./operations/config/priceLists');
 
 module.exports = app;
 
@@ -23,6 +24,9 @@ app.use('/api/flights', flightsRouter);
 
 const bookingsRouter = require('./routes/bookings');
 app.use('/api/bookings', bookingsRouter);
+
+// automated price list updating
+autoPriceUpdate();
 
 // server initialization
 app.listen(PORT, () => {
