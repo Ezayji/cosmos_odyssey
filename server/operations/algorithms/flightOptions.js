@@ -1,9 +1,11 @@
+const { quickSort } = require('./quickSort');
+
 // find next flight
 const findNextFlight = (priceList, from, to, takeOff) => {
-    let pathPrices = [];
+    let pathPrices;
     let distance = 0;
     let flight;
-
+    
     // find the path from priceList
     for(let i = 0; i < priceList.length; i++){
         if (priceList[i].routeInfo.from.name === from && priceList[i].routeInfo.to.name === to){
@@ -12,10 +14,10 @@ const findNextFlight = (priceList, from, to, takeOff) => {
             break;
         };
     };
-
-    // sort pricelist by flightStart
     
-
+    // sort pathprices by flightStart
+    quickSort(pathPrices);
+    
     // find the first path with greater or equal takeoff time
     for(let i = 0; i < pathPrices.length; i++){
         if (new Date(pathPrices[i].flightStart).valueOf() >= takeOff){
@@ -25,7 +27,6 @@ const findNextFlight = (priceList, from, to, takeOff) => {
     };
 
     if(!flight) return false;
-
     return [flight, distance];
 
 };
@@ -46,6 +47,7 @@ const combineOption = (priceList, path, flightStart = 0) => {
 
     for(let i = 0; i < path.length - 1; i++){
         const flight = findNextFlight(priceList, path[i], path[i + 1], takeOff);
+        console.log(flight)
         if(!flight) return false;
 
         // else
@@ -64,3 +66,27 @@ const combineOption = (priceList, path, flightStart = 0) => {
     return option;
 
 };
+
+const getOptionsForAllPaths = (priceList, paths) => {
+    const options = [];
+
+    for(const path of paths){
+        let iterate = true;
+        let flightStart = 0;
+        while(iterate){
+            const option = combineOption(priceList, path, flightStart);
+            if(!option) iterate = false;
+            flightStart = option.start;
+            options.push(option);
+        };
+    };
+
+    return options;
+};
+
+// const flights = require('../../../exampleresponse.json');
+// const { flightPaths, findAllPossiblePaths } = require('./flightPaths');
+
+// const paths = findAllPossiblePaths(flightPaths, 'Earth', 'Mercury');
+// const options = getOptionsForAllPaths(flights.legs, paths);
+// console.log(options);
