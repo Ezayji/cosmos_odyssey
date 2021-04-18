@@ -26,6 +26,8 @@ const flightPaths = {
 // Neptune -> Uranus 1627450000
 // Neptune -> Mercury 4443090000
 
+
+// ===== DEPTH FIRST SEARCH =====
 const findPossiblePath = (graph, current, target, visited=[]) => {
     
     visited.push(current);
@@ -49,9 +51,21 @@ const findPossiblePath = (graph, current, target, visited=[]) => {
     
 };
 
-// console.log(findPossiblePath(flightPaths, 'Jupiter', 'Mercury'))
+// ===============================
 
-const findPossiblePaths = (graph, start, target) => {
+
+// helper to determine if nested array does not exist
+const notIncluded = (arr, value) => {
+    if(arr.length === 0) return true;
+
+    const index = arr.findIndex(el => JSON.stringify(el) === JSON.stringify(value));
+    if(index === -1) return true;
+    return false;
+};
+
+
+// find all possible paths from each neighbor in the way
+const findAllPossiblePaths = (graph, start, target) => {
     const paths = [];
 
     const vertex_and_path = [start, [start]];
@@ -59,21 +73,21 @@ const findPossiblePaths = (graph, start, target) => {
     const visited = [];
 
     while (vertexes_to_visit.length > 0){
+        
         const removed = vertexes_to_visit.splice(0, 1);
         visited.push(removed[0][0]);
         const current_path = removed[0][1];
-        console.log('i')
+
         for (const neighbor of graph[removed[0][0]]){
-            //console.log(neighbor)
-            const current = current_path.slice(0, current_path.length);
+
             if (!visited.includes(neighbor)){
-                console.log(neighbor)
-                console.log(current_path)
+                
+                const current = current_path.slice(0, current_path.length);
                 const path = findPossiblePath(graph, neighbor, target, current);
-                //console.log(path)
+                
                 if (path) {
                     vertexes_to_visit.push([neighbor, current_path.concat([neighbor])]);
-                    paths.push(path);
+                    if(notIncluded(paths, path)) paths.push(path);
                 };
             };
         };
@@ -81,6 +95,8 @@ const findPossiblePaths = (graph, start, target) => {
 
     return paths;
 };
-// visited.slice(0, visited.length - 1)
 
-console.log(findPossiblePaths(flightPaths, 'Jupiter', 'Mercury'));
+module.exports = {
+    flightPaths,
+    findAllPossiblePaths
+};
