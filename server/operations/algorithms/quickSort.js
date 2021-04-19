@@ -1,17 +1,21 @@
+
+// SWAPING HELPER
 const swap = (list, idx1, idx2) => {
     const temp = list[idx2];
     list[idx2] = list[idx1];
     list[idx1] = temp;
 };
 
-const quickSort = (list, start = 0, end = list.length - 1) => {
+
+// QUICKSORT
+function quickSort(list, start = 0, end = list.length - 1, comparison_function) {
     if(start >= end) return;
     
     // determine pivot element
     const range = end - start + 1;
     const pivot_idx = start + Math.floor(Math.random() * range);
-    const pivot_el = new Date(list[pivot_idx].flightStart).valueOf();
-    
+    const pivot_el = list[pivot_idx];
+
     // swap pivot and last element in the list
     swap(list, pivot_idx, end);
 
@@ -20,7 +24,7 @@ const quickSort = (list, start = 0, end = list.length - 1) => {
 
     for(let i = start; i < end; i++){
         // element out of place
-        if(new Date(list[i].flightStart).valueOf() < pivot_el){
+        if(comparison_function(list[i], pivot_el)){
 
             //swap the element with element at less than pointer
             swap(list, i, less_than_pointer);
@@ -33,10 +37,41 @@ const quickSort = (list, start = 0, end = list.length - 1) => {
     swap(list, end, less_than_pointer);
 
     // quicksort lesser than and bigger than pivot sides of the list
-    quickSort(list, start, less_than_pointer - 1);
-    quickSort(list, less_than_pointer + 1, end);
+    quickSort(list, start, less_than_pointer - 1, comparison_function);
+    quickSort(list, less_than_pointer + 1, end, comparison_function);
 };
 
+
+// COMPARISON FUNCTIONS
+
+// by flightStart
+function byFlightStart(item, pivot) {
+    return new Date(item.flightStart).valueOf() < new Date(pivot.flightStart).valueOf();
+};
+
+
+// ===== for combined options =====
+
+// by price
+function byPriceAsc(item, pivot) {
+    return item.price < pivot.price;
+};
+
+// by distance
+function byDistanceAsc(item, pivot) {
+ return item.distance < pivot.distance;
+};
+
+// by traveltime
+function byTraveltimeAsc(item, pivot) {
+    return item.travelTime < pivot.travelTime;
+};
+
+
 module.exports = {
-    quickSort
+    quickSort,
+    byFlightStart,
+    byPriceAsc,
+    byDistanceAsc,
+    byTraveltimeAsc
 };
