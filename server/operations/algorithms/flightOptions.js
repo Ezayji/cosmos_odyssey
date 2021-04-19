@@ -56,10 +56,7 @@ const combineOption = (priceList, path, flightStart = 0) => {
         // build up option object
         option.price += flight[0].price;
         option.distance += flight[1];
-        // add total flight time
-        option.travelTime += flight[0].total_time;
-        //add current flight takeoff minus last flight landing to travel time
-        if(i > 0) option.travelTime += (new Date(flight[0].flightStart).valueOf() - new Date(option.flights[option.flights.length - 1].flightEnd).valueOf());
+        
         // add company name to list if it's not included
         if(!option.company_names.includes(flight[0].company.name)) option.company_names.push(flight[0].company.name);
         // add flight to option object
@@ -68,12 +65,14 @@ const combineOption = (priceList, path, flightStart = 0) => {
         // set the takeoff time for next flight
         takeOff = new Date(flight[0].flightEnd).valueOf();
 
-
+        // add travel start time and end time
         if(i === 0) option.start = new Date(flight[0].flightStart).valueOf();
         if(i === path.length - 2) option.end = new Date(flight[0].flightEnd).valueOf();
 
     };
 
+    // calculate total travel time including stop time between flights
+    option.travelTime = option.end - option.start;
     return option;
 
 };
@@ -100,9 +99,10 @@ const getOptionsForAllPaths = (priceList, paths) => {
 // const { flightPaths, findAllPossiblePaths } = require('./flightPaths');
 
 // const paths = findAllPossiblePaths(flightPaths, 'Earth', 'Mercury');
+// const paths = findAllPossiblePaths(flightPaths, 'Mercury', 'Saturn');
 // const options = getOptionsForAllPaths(flights.legs, paths);
 // console.log(options);
-// console.log('Option 1: ', options[0].flights);
+//console.log('Option 1: ', options[0].flights);
 
 module.exports = {
     getOptionsForAllPaths
