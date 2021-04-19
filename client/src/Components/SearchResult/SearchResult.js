@@ -1,7 +1,7 @@
 import './SearchResult.css';
 import React from 'react';
 
-const SearchResult = () => {
+const SearchResult = ({ data }) => {
     return (
         <div>
 
