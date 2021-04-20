@@ -29,23 +29,55 @@
 .search-filter-selection {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
-
-
 
 .search-filter-link a {
     text-decoration: none;
     color: black;
 }
 
+.search-filter-link{
+    width: 30%;
+    background-color: rgb(255, 227, 255);
+    padding: 4px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-filter-link:hover{
+    background-color: rgb(255, 240, 255);
+}
+
 .company-selector{
     width: 100%;
     display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
 }
 
 .company-selector button, .company-selector select{
     text-align: center;
-    width: 50%
+    width: 49%;
+    border-radius: 5px;
+}
+
+.company-selector button{
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.company-selector button:hover{
+    background-color: rgb(19, 19, 19);
+}
+
+@media only screen and (max-width: 480px){
+    .search-page-content{
+        width: 90%;
+    }
 }
