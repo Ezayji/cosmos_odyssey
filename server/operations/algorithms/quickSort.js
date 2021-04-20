@@ -53,44 +53,29 @@ function byFlightStart(item, pivot) {
 // ===== for combined options =====
 
 // by price ascending
-function byPriceAsc(item, pivot) {
+function byPrice(item, pivot) {
     return item.price < pivot.price;
 };
 
-// by price descending
-function byPriceDesc(item, pivot){
-    return item.price > pivot.price;
-};
 
 
 // by distance ascending
-function byDistanceAsc(item, pivot) {
+function byDistance(item, pivot) {
     return item.distance < pivot.distance;
 };
 
-// by distance descending
-function byDistanceDesc(item, pivot){
-    return item.distance > pivot.distance;
-};
 
 
 // by traveltime ascending
-function byTraveltimeAsc(item, pivot) {
+function byTraveltime(item, pivot) {
     return item.travelTime < pivot.travelTime;
 };
 
-// by traveltime descending
-function byTraveltimeDesc(item, pivot){
-    return item.travelTime > pivot.travelTime;
-};
 
 module.exports = {
     quickSort,
     byFlightStart,
-    byPriceAsc,
-    byPriceDesc,
-    byDistanceAsc,
-    byDistanceDesc,
-    byTraveltimeAsc,
-    byTraveltimeDesc
+    byPrice,
+    byDistance,
+    byTraveltime
 };

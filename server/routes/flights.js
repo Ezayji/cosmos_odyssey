@@ -1,13 +1,15 @@
 const express = require('express');
 const flightsRouter = express.Router();
 
-const { getAvailableOptions } = require('../operations/middleware/flights');
+const { getAvailableOptions, getAvailableCompanies } = require('../operations/middleware/flights');
 
 
-// Get available flights from A to B sorted or random
+// Get all available companies
+flightsRouter.get('/companies', getAvailableCompanies);
+
+
+// Get all available flights from A to B sorted / random or by company sorted / random
 flightsRouter.get('/', getAvailableOptions);
 
-// Get available flights from A to B by a company sorted or random
-flightsRouter.get('/:company_name');
 
 module.exports = flightsRouter;

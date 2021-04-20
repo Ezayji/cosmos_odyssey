@@ -7,14 +7,10 @@ export async function getFlights(data) {
     const { from, to, filter, company } = data;
     const query = `?from=${from}&to=${to}`;
     const queryFilter = filter !== undefined ? `&filter=${filter}` : '';
+    const companyFilter = company !== undefined ? `&company=${company.replaceAll(' ', '+')}` : '';
     
-    let url;
-    if(company) {
-        url = `${host}/api/flights/${company}${query}${queryFilter}`;
-    } else {
-        url = `${host}/api/flights${query}${queryFilter}`;
-    };
-
+    const url = `${host}/api/flights${query}${queryFilter}${companyFilter}`;
+    
     try{
         const response = await axios.get(url);
         return response.data;

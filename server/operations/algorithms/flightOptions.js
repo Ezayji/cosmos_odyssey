@@ -1,7 +1,9 @@
 const { quickSort, byFlightStart } = require('./quickSort');
 
+const { linearSearchCoFlight } = require('./linearSearch');
+
 // find next flight
-const findNextFlight = (priceList, from, to, takeOff) => {
+const findNextFlight = (priceList, from, to, takeOff, company) => {
     let pathPrices;
     let distance = 0;
     let flight;
@@ -17,6 +19,9 @@ const findNextFlight = (priceList, from, to, takeOff) => {
     
     // sort pathprices by flightStart
     quickSort(pathPrices, 0, pathPrices.length - 1, byFlightStart);
+
+    // filter out flights with requested company
+    if(company) pathPrices = linearSearchCoFlight(pathPrices, company);
     
     // find the first path with greater or equal takeoff time
     for(let i = 0; i < pathPrices.length; i++){
@@ -35,7 +40,7 @@ const findNextFlight = (priceList, from, to, takeOff) => {
 };
 
 
-const combineOption = (priceList, path, flightStart = 0) => {
+const combineOption = (priceList, path, flightStart = 0, company) => {
     let takeOff = flightStart;
     const option = {
         price: 0,
@@ -49,16 +54,17 @@ const combineOption = (priceList, path, flightStart = 0) => {
     };
 
     for(let i = 0; i < path.length - 1; i++){
-        
-        const flight = findNextFlight(priceList, path[i], path[i + 1], takeOff);
+
+        const flight = findNextFlight(priceList, path[i], path[i + 1], takeOff, company);
+
         if(!flight) return false;
 
         // build up option object
         option.price += flight[0].price;
         option.distance += flight[1];
         
-        // add company name to list if it's not included
-        if(!option.company_names.includes(flight[0].company.name)) option.company_names.push(flight[0].company.name);
+        // add company name to list if it's not included and no certain company is requested
+        if(!option.company_names.includes(flight[0].company.name) && !company) option.company_names.push(flight[0].company.name);
         // add flight to option object
         option.flights.push(flight[0]);
 
@@ -71,19 +77,22 @@ const combineOption = (priceList, path, flightStart = 0) => {
 
     };
 
+    // if flights for single company were requested
+    if(company) option.company_names.push(company);
+
     // calculate total travel time including stop time between flights
     option.travelTime = option.end - option.start;
     return option;
 
 };
 
-const getOptionsForAllPaths = (priceList, paths) => {
+const getOptionsForAllPaths = (priceList, paths, company = false) => {
     const options = [];
-
+    
     for(const path of paths){
         let flightStart = 0;
         while(true){
-            const option = combineOption(priceList, path, flightStart);
+            const option = combineOption(priceList, path, flightStart, company);
             if(!option) {
                 break;
             };
@@ -99,10 +108,11 @@ const getOptionsForAllPaths = (priceList, paths) => {
 // const { flightPaths, findAllPossiblePaths } = require('./flightPaths');
 
 // const paths = findAllPossiblePaths(flightPaths, 'Earth', 'Mercury');
-// const paths = findAllPossiblePaths(flightPaths, 'Mercury', 'Saturn');
-// const options = getOptionsForAllPaths(flights.legs, paths);
+// const paths = findAllPossiblePaths(flightPaths, 'Mercury', 'Venus');
+// console.log(paths);
+// const options = getOptionsForAllPaths(flights.legs, paths, 'Space Odyssey');
 // console.log(options);
-//console.log('Option 1: ', options[0].flights);
+// console.log('Option 1: ', options[0].flights);
 
 module.exports = {
     getOptionsForAllPaths

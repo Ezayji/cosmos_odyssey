@@ -34,6 +34,9 @@ const Search = ({ location }) => {
             setFlights(result.options);
             setValidUntil(result.validUntil);
         };
+
+        getResults();
+        
     }, [filter, company]);
 
     return (
