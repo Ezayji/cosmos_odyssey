@@ -115,5 +115,7 @@ const getOptionsForAllPaths = (priceList, paths, company = false) => {
 // console.log('Option 1: ', options[0].flights);
 
 module.exports = {
+    findNextFlight,
+    combineOption,
     getOptionsForAllPaths
 };
