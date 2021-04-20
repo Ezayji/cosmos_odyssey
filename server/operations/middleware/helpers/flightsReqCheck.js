@@ -1,6 +1,6 @@
 const { flightPaths } = require('../../algorithms/flightPaths');
 
-const filters = ['priceasc', 'pricedesc', 'distanceasc', 'distancedesc', 'traveltimeasc', 'traveltimedesc'];
+const filters = ['price', 'distance', 'traveltime'];
 
 // check from and to
 const notValidLocations = (from, to) => {

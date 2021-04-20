@@ -20,3 +20,15 @@ export async function getFlights(data) {
     };
 };
 
+
+// get all companies
+export async function getCompanies(){
+    const url = `${host}/api/flights/companies`;
+    try{
+        const response = await axios.get(url);
+        return response.data;
+    } catch (e) {
+        console.log('Companies request error:\n', e);
+        return false;
+    };
+};

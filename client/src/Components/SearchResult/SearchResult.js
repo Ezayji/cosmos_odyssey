@@ -1,7 +1,7 @@
 import './SearchResult.css';
 import React from 'react';
 
-const SearchResult = ({ data }) => {
+const SearchResult = ({ data, validUntil }) => {
     return (
         <div>
 

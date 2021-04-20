@@ -16,3 +16,36 @@
 .search-page-content{
     width: 75%;
 }
+
+/* SEARCH FILTER */
+
+.search-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-filter-selection {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+
+.search-filter-link a {
+    text-decoration: none;
+    color: black;
+}
+
+.company-selector{
+    width: 100%;
+    display: flex;
+}
+
+.company-selector button, .company-selector select{
+    text-align: center;
+    width: 50%
+}
