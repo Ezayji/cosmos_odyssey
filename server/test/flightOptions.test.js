@@ -66,7 +66,7 @@ describe('* flightOptions *', () => {
 
     describe('-- combineOption --', () => {
 
-        it('Returns all possible combined options for specified route for every flight leaving starting point', () => {
+        it('', () => {
 
         });
 

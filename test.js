@@ -13,5 +13,6 @@ console.log(Date.now());
 
 console.log('Value 2')
 console.log(d2.toString());
+console.log(d2.toLocaleDateString());
 console.log(d2.toLocaleTimeString());
 console.log(d2.valueOf());

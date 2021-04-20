@@ -23,8 +23,8 @@ const Search = ({ location, history }) => {
     // company flights search
     const onSubmit = (e) => {
         e.preventDefault();
-        if(compSelect === company || compSelect === '') return;
-        history.push(`/search?from=${from}&to=${to}&company=${compSelect}`);
+        if(compSelect === company) return;
+        history.push(compSelect === '' ? `/search?from=${from}&to=${to}` : `/search?from=${from}&to=${to}&company=${compSelect}`);
     };
 
     // get available companies
