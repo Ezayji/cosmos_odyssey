@@ -84,7 +84,7 @@ code {
   margin-right: 5px;
 } */
 
-select{
+select, input{
   font-family: 'Lexend';
 }
 
@@ -96,7 +96,7 @@ h3 {
   font-size: 32px;
 }
 
-p, button, select {
+p, button, select, input {
   font-size: 24px;
 }
 
@@ -111,7 +111,7 @@ p, button, select {
     font-size: 24px;
   }
 
-  p, button, select{
+  p, button, select, input{
     font-size: 16px;
   }
 
@@ -128,7 +128,7 @@ p, button, select {
     font-size: 18px;
   }
 
-  p, button, select{
+  p, button, select, input{
     font-size: 14px;
   }
 }

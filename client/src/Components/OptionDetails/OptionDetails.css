@@ -31,6 +31,7 @@
     background-color: rgb(0, 0, 0);
     color: white;
     padding: 5px 0;
+    margin-top: 10px;
 }
 
 .option-details-wrapper{
@@ -44,11 +45,55 @@
     background-color: rgb(255, 255, 255);
 }
 
+.option-details-wrapper form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.option-details-wrapper form button{
+    width: 95%;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 5px 0;
+}
+
+.option-booking-inputs{
+    width: 95%;
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+.option-booking-inputs input{
+    width: 49%;
+}
+
+
+
 .option-routes{
     background-color: #ffe9e9;
     
-    margin: 10px 0;
+    margin-top: 10px;
     padding: 10px 0;
+}
+
+#margin-top-bottom{
+    /* border-top: 3px dashed #ffe9e9; */
+    margin: 10px 0;
+}
+
+.option-flights{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 

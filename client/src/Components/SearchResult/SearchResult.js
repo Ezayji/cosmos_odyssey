@@ -41,7 +41,7 @@ const SearchResult = ({ data, validUntil }) => {
     const onClick = (e) => {
         e.preventDefault();
         
-        if(validUntil <= new Date().getTime()) {
+        if(parseInt(validUntil) <= new Date().getTime()) {
             alert('Current prices are expired, please refresh the page');
             return;
         };
