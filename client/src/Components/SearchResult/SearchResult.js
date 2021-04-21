@@ -1,10 +1,13 @@
 import './SearchResult.css';
 import React, { useState, useEffect } from 'react';
 
+import OptionDetails from '../OptionDetails/OptionDetails';
+
 const SearchResult = ({ data, validUntil }) => {
 
     const [start, setStart] = useState();
     const [end, setEnd] = useState();
+    const [detailView, setDetailView] = useState(false);
     
     useEffect(() => {
         setStart(new Date(data.start));
@@ -16,9 +19,9 @@ const SearchResult = ({ data, validUntil }) => {
     if(start){
         startTime = (
             <div>
-                <h3>{data.route[0]}</h3>
+                <h3 id='margin-bottom' >{data.route[0]}</h3>
                 <p id='gray' >{start.toLocaleDateString()}</p>
-                <h3>{start.toLocaleTimeString()}</h3>
+                <h3 id='margin-top' >{start.toLocaleTimeString()}</h3>
             </div>
         );
     };
@@ -28,12 +31,28 @@ const SearchResult = ({ data, validUntil }) => {
     if(end){
         endTime = (
             <div>
-                <h3>{data.route[data.route.length - 1]}</h3>
+                <h3 id='margin-bottom' >{data.route[data.route.length - 1]}</h3>
                 <p id='gray' >{end.toLocaleDateString()}</p>
-                <h3>{end.toLocaleTimeString()}</h3>
+                <h3 id='margin-top' >{end.toLocaleTimeString()}</h3>
             </div>
         );
     };
+
+    const onClick = (e) => {
+        e.preventDefault();
+        
+        if(validUntil <= new Date().getTime()) {
+            alert('Current prices are expired, please refresh the page');
+            return;
+        };
+
+        setDetailView(true);
+    };
+
+    let details;
+
+    if(detailView) details = <OptionDetails data={data} validUntil={validUntil} start={start} end={end}  setDetailView={setDetailView} />
+    if(!detailView) details = null;
 
     return (
         <div className='search-result' >
@@ -50,12 +69,13 @@ const SearchResult = ({ data, validUntil }) => {
                     <p id='gray' >Distance</p>
                     <h3>{data.distance} km</h3>
                 </div>
-                <div className='search-result-data-row' >
+                <div id='margin-top' className='search-result-data-row' >
                     <p id='gray' >Price</p>
-                    <h3>{data.price} €</h3>
+                    <h3>{Math.round(data.price)} €</h3>
                 </div>
             </div>
-            <button>Book</button>
+            <button onClick={onClick} >Details</button>
+            {details}
         </div>
     );
 };

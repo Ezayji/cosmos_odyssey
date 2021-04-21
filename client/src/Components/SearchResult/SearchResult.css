@@ -19,6 +19,14 @@
     color: rgb(42, 48, 59);
 }
 
+#margin-bottom{
+    margin-bottom: 5px;
+}
+
+#margin-top{
+    margin-top: 5px;
+}
+
 .search-result button{
     width: 95%;
     border-radius: 5px;
@@ -27,6 +35,10 @@
     background-color: rgb(0, 0, 0);
     color: white;
     padding: 5px 0;
+}
+
+.search-result button:hover{
+    background-color: rgb(19, 19, 19);
 }
 
 .search-result-times{

@@ -64,12 +64,4 @@ describe('* flightOptions *', () => {
 
     });
 
-    describe('-- combineOption --', () => {
-
-        it('', () => {
-
-        });
-
-    });
-
 });
