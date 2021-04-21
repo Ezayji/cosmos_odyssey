@@ -1,5 +1,5 @@
 // latest pricelist query
-const { getLatestPrices } = require('../queries/flightQueries');
+const { getLatestPrices } = require('../queries/priceListQueries');
 
 // paths
 const { flightPaths, findAllPossiblePaths } = require('../algorithms/flightPaths');
@@ -15,6 +15,7 @@ const { notValidLocations, notValidFilter } = require('./helpers/flightsReqCheck
 
 // flitering
 const { linearSearchCompanyNames } = require('../algorithms/linearSearch');
+
 
 
 // get all available flights from a to b

@@ -1,11 +1,11 @@
 const express = require('express');
 const bookingsRouter = express.Router();
 
-const { postNewBooking } = require('../operations/middleware/bookings');
+const { postNewBooking, getAllBookings } = require('../operations/middleware/bookings');
 
 
 // Get active bookings
-bookingsRouter.get('/');
+bookingsRouter.get('/', getAllBookings);
 
 // Post a new booking
 bookingsRouter.post('/', postNewBooking);
