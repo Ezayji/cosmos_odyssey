@@ -9,6 +9,7 @@ import SearchResult from '../SearchResult/SearchResult';
 import { getFlights, getCompanies } from '../../Services/flights';
 
 const Search = ({ location, history }) => {
+    const [priceListId, setPriceListId] = useState();
     const [flights, setFlights] = useState();
     const [validUntil, setValidUntil] = useState();
     const [companies, setCompanies] = useState();
@@ -58,6 +59,7 @@ const Search = ({ location, history }) => {
                 return;
             };
 
+            setPriceListId(result.id);
             setFlights(result.options);
             setValidUntil(result.validUntil);
         };
@@ -82,7 +84,7 @@ const Search = ({ location, history }) => {
     let results;
     if(flights){
         results = flights.map((item, i) => (
-            <SearchResult data={item} validUntil={validUntil} key={i} /> 
+            <SearchResult data={item} validUntil={validUntil} key={i} priceListId={priceListId} /> 
         ));
     };
 

@@ -58,7 +58,7 @@ const getAvailableOptions = async (req, res) => {
     if(filter === 'traveltime') quickSort(options, 0, options.length - 1, byTraveltime);
 
     // return results
-    res.status(200).send({ validUntil: prices.valid_until, options: options });
+    res.status(200).send({ id: prices.id, validUntil: prices.valid_until, options: options });
 };
 
 

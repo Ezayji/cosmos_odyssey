@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import OptionDetails from '../OptionDetails/OptionDetails';
 
-const SearchResult = ({ data, validUntil }) => {
+const SearchResult = ({ data, validUntil, priceListId }) => {
 
     const [start, setStart] = useState();
     const [end, setEnd] = useState();
@@ -51,7 +51,7 @@ const SearchResult = ({ data, validUntil }) => {
 
     let details;
 
-    if(detailView) details = <OptionDetails data={data} validUntil={validUntil} start={start} end={end}  setDetailView={setDetailView} />
+    if(detailView) details = <OptionDetails data={data} validUntil={validUntil} start={start} end={end}  setDetailView={setDetailView} priceListId={priceListId} />
     if(!detailView) details = null;
 
     return (

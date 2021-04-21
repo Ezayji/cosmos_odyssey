@@ -3,7 +3,7 @@ const pool = require('../config/pool');
 
 // get the latest price list
 const getLatestPrices = async () => {
-    const text = 'SELECT valid_until, data FROM price_list ORDER BY valid_until DESC LIMIT 1';
+    const text = 'SELECT id, valid_until, data FROM price_list ORDER BY valid_until DESC LIMIT 1';
     try{
         const result = await pool.query(text);
         return result.rows[0];

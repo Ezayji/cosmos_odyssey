@@ -1,11 +1,13 @@
 
-const { uuid } = require('uuidv4');
+const { v4 } = require('uuid');
 
 const { insertNewBooking, getBookings } = require('../queries/bookingQueries');
 
 const { getLatestPricelistId } = require('../queries/priceListQueries');
 
 const { notValidData } = require('./helpers/bookingsReqCheck');
+
+
 
 // post a new booking
 const postNewBooking = async (req, res) => {
@@ -24,7 +26,7 @@ const postNewBooking = async (req, res) => {
     if(latestId !== price_list_id) return res.status(400).send('The pricelist is expired');
 
     const data = {
-        id: uuid(),
+        id: v4(),
         first_name,
         last_name,
         routes,

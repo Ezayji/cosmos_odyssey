@@ -1,12 +1,14 @@
 import './OptionDetails.css';
 import React, { useState } from 'react';
 
-const OptionDetails = ({ data, validUntil, start, end, setDetailView }) => {
+import { postNewBooking } from '../../Services/bookings';
+
+const OptionDetails = ({ data, validUntil, start, end, setDetailView, priceListId }) => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         
         if(parseInt(validUntil) <= new Date().getTime()) {
@@ -14,7 +16,26 @@ const OptionDetails = ({ data, validUntil, start, end, setDetailView }) => {
             return;
         };
 
+        const booking = {
+            first_name: firstName,
+            last_name: lastName,
+            routes: data.flights,
+            price: Math.round(data.price),
+            travel_time: data.travelTime,
+            transport_company_names: data.company_names,
+            price_list_id: priceListId
+        };
+        
+        const post = await postNewBooking(booking);
+        if(!post) {
+            alert('Something went wrong, please try again or refresh the page')
+            return;
+        };
 
+        alert(`Booking successfully made for ${firstName} ${lastName}, you can find it on the bookings page`);
+
+        setFirstName('');
+        setLastName('');
 
     };
 
@@ -78,10 +99,10 @@ const OptionDetails = ({ data, validUntil, start, end, setDetailView }) => {
                     </div>
                     <form onSubmit={onSubmit} >
                         <div className='option-booking-inputs' >
-                            <input onChange={(e) => setFirstName(e.target.value)} value={firstName} placeholder='First name' required />
-                            <input onChange={(e) => setLastName(e.target.value)} value={lastName} placeholder='Last name' required />
+                            <input onChange={(e) => setFirstName(e.target.value)} value={firstName} placeholder='First name' required maxLength='30' />
+                            <input onChange={(e) => setLastName(e.target.value)} value={lastName} placeholder='Last name' required maxLength='30' />
                         </div>
-                        <button>Book</button>
+                        <button type='submit' >Book</button>
                     </form>
                 </div>
             </div>

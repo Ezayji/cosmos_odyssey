@@ -16,3 +16,5 @@ console.log(d2.toString());
 console.log(d2.toLocaleDateString());
 console.log(d2.toLocaleTimeString());
 console.log(d2.valueOf());
+
+console.log(new Date(1619027669052).toLocaleString())
