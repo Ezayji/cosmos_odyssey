@@ -104,16 +104,6 @@ const getOptionsForAllPaths = (priceList, paths, company = false) => {
     return options;
 };
 
-// const flights = require('../../../exampleresponse.json');
-// const { flightPaths, findAllPossiblePaths } = require('./flightPaths');
-
-// const paths = findAllPossiblePaths(flightPaths, 'Earth', 'Mercury');
-// const paths = findAllPossiblePaths(flightPaths, 'Mercury', 'Venus');
-// console.log(paths);
-// const options = getOptionsForAllPaths(flights.legs, paths, 'Space Odyssey');
-// console.log(options);
-// console.log('Option 1: ', options[0].flights);
-
 module.exports = {
     findNextFlight,
     combineOption,

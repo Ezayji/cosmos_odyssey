@@ -1,6 +1,6 @@
 const { findNextFlight, combineOption, getOptionsForAllPaths } = require('../operations/algorithms/flightOptions');
 
-const data = require('../../exampleresponse.json');
+const data = require('./helpers/exampleresponse.json');
 
 const { assert } = require('chai');
 

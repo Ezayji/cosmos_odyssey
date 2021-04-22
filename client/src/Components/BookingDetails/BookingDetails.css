@@ -12,12 +12,14 @@
     width: 100vw; 
     backdrop-filter: blur(50px);
     z-index: 10;
+
+    padding: 10px 0;
     
     overflow-y: scroll;
     
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .booking{
@@ -48,16 +50,30 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    padding: 5px 0;
+    padding: 10px 0;
     background-color: #ffe9e9;
 }
 
 .booking-time-price-row h3{
-    margin: 0;
+    margin-bottom: 0;
     margin-left: 5px;
+    font-size: 24px;
+}
+
+.booking-time-price-row p{
+    margin-left: 5px;
+    font-size: 16px;
 }
 
 .booking-time-price-row{
     display: flex;
     align-items: flex-end;
+}
+
+#margin-bottom{
+    margin-bottom: 5px;
+}
+
+#margin-top{
+    margin-top: 5px;
 }

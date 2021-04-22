@@ -43,12 +43,15 @@ const autoPriceUpdate = async () => {
     while(true){
         if(validUntil <= Date.now()){
             const response = await getNewPrices();
-            if(!response) continue;
+            if(!response) {
+                await delay(1000 * 10);
+                continue;
+            };
             validUntil = response;
             console.log(validUntil);
         };
 
-        await delay(1000 * 60);
+        await delay(1000 * 30);
     };
 };
 

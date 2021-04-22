@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "15.11.0",
+    "npm": "7.8.0"
+  },
   "scripts": {
     "test": "mocha ./test/",
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Ezayji",
   "license": "MIT",

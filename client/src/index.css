@@ -76,14 +76,6 @@ code {
     monospace;
 }
 
-/* h1 {
-  font-family: 'Teko';
-  font-size: 110px;
-  margin-top: -8px;
-  margin-bottom: -18px;
-  margin-right: 5px;
-} */
-
 select, input{
   font-family: 'Lexend';
 }
@@ -101,11 +93,6 @@ p, button, select, input {
 }
 
 @media only screen and (max-width: 480px){
-  h1{
-    font-size: 64px;
-    margin-top: -3px;
-    margin-bottom: -9px;
-  }
 
   h3{
     font-size: 24px;
@@ -118,11 +105,6 @@ p, button, select, input {
 }
 
 @media only screen and (max-width: 320px){
-  h1{
-    font-size: 48px;
-    margin-top: -3px;
-    margin-bottom: -9px;
-  }
 
   h3{
     font-size: 18px;

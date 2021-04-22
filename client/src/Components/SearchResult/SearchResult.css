@@ -74,3 +74,11 @@
     margin-left: 5px;
     font-size: 16px;
 }
+
+
+
+@media only screen and (max-width: 350px){
+    .search-result-data-row h3{
+        font-size: 18px;
+    }
+}

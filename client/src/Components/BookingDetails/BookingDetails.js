@@ -7,11 +7,11 @@ const BookingDetails = ({ data, setDetails }) => {
     if(data) fromTo = `${data.routes[0].from} > ${data.routes[data.routes.length - 1].to}`;
 
     const flights = data.routes.map((item, i) => (
-        <div key={i} className='booking-flight' >
+        <div key={i} className='booking-flight' id='margin-top' >
             <div>
                 <h3>{item.from}</h3>
                 <p id='gray' >{new Date(item.flightStart).toLocaleDateString()}</p>
-                <h3>{new Date(item.flightStart).toLocaleTimeString()}</h3>
+                <h3 id='margin-top' >{new Date(item.flightStart).toLocaleTimeString()}</h3>
             </div>
             <div>
                 <p id='gray' >{item.company.name}</p>
@@ -20,7 +20,7 @@ const BookingDetails = ({ data, setDetails }) => {
             <div>
                 <h3>{item.to}</h3>
                 <p id='gray' >{new Date(item.flightEnd).toLocaleDateString()}</p>
-                <h3>{new Date(item.flightEnd).toLocaleTimeString()}</h3>
+                <h3 id='margin-top' >{new Date(item.flightEnd).toLocaleTimeString()}</h3>
             </div> 
         </div>
     ));
@@ -40,7 +40,7 @@ const BookingDetails = ({ data, setDetails }) => {
                         {flights}
                     </div>
                     <div className='booking-time-price' >
-                        <div className='booking-time-price-row' >
+                        <div className='booking-time-price-row' id='margin-bottom' >
                             <p id='gray' >Total time (with stops):</p>
                             <h3>{Math.floor(data.total_travel_time / 1000 / 60 / 60 / 24)}d {Math.round(((data.total_travel_time / 1000 / 60 / 60 / 24) - Math.floor(data.total_travel_time / 1000 / 60 / 60 / 24)) * 24)}h</h3>
                         </div>
