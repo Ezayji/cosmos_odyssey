@@ -9,11 +9,12 @@ import SearchResult from '../SearchResult/SearchResult';
 import { getFlights, getCompanies } from '../../Services/flights';
 
 const Search = ({ location, history }) => {
-    const [priceListId, setPriceListId] = useState();
-    const [flights, setFlights] = useState();
-    const [validUntil, setValidUntil] = useState();
-    const [companies, setCompanies] = useState();
+    const [priceListId, setPriceListId] = useState('');
+    const [flights, setFlights] = useState([]);
+    const [validUntil, setValidUntil] = useState(0);
+    const [companies, setCompanies] = useState([]);
     const [compSelect, setCompSelect] = useState('');
+    const [noResults, setNoResults] = useState(false);
 
     // search queries
     const from = queryString.parse(location.search).from;
@@ -26,6 +27,30 @@ const Search = ({ location, history }) => {
         e.preventDefault();
         if(compSelect === company) return;
         history.push(compSelect === '' ? `/search?from=${from}&to=${to}` : `/search?from=${from}&to=${to}&company=${compSelect}`);
+    };
+
+    // display available companies
+    let companySelection;
+    if(companies.length !== 0){
+        companySelection = companies.map((item, i) => (
+            <option value={item} key={i} >{item}</option>
+        ));
+    };
+
+    // display flight options
+    let results;
+    if(flights.length !== 0){
+        results = flights.map((item, i) => (
+            <SearchResult data={item} validUntil={validUntil} key={i} priceListId={priceListId} /> 
+        ));
+    };
+
+    if(noResults){
+        results = (
+            <div className='search-result' >
+                <p>{noResults}</p>
+            </div>
+        );
     };
 
     // get available companies
@@ -54,11 +79,23 @@ const Search = ({ location, history }) => {
             if(company) data.company = company;
 
             const result = await getFlights(data);
+            
+            // server error
             if(!result) {
                 alert('Something went wrong, please refresh the page')
                 return;
             };
 
+            // no options found
+            if(result.error){
+                setPriceListId('');
+                setFlights([]);
+                setValidUntil(0);
+                setNoResults(result.error);
+                return;
+            };
+
+            setNoResults(false);
             setPriceListId(result.id);
             setFlights(result.options);
             setValidUntil(result.validUntil);
@@ -69,24 +106,8 @@ const Search = ({ location, history }) => {
         // set selected company option if available
         if(company) setCompSelect(company);
 
-    }, [filter, company]);
+    }, [filter, company, from, to]);
 
-
-    // display available companies
-    let companySelection;
-    if(companies){
-        companySelection = companies.map((item, i) => (
-            <option value={item} key={i} >{item}</option>
-        ));
-    };
-
-    // display flight options
-    let results;
-    if(flights){
-        results = flights.map((item, i) => (
-            <SearchResult data={item} validUntil={validUntil} key={i} priceListId={priceListId} /> 
-        ));
-    };
 
     return (
         <div className='search-page' >

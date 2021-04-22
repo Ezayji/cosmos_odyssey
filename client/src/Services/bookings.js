@@ -22,6 +22,7 @@ export async function getBookings(){
         const response = await axios.get(url);
         return response.data;
     } catch (e) {
+        if(e.response.message === 'No available bookings at the moment') return { error: e.response.message };
         console.log('Get Bookings Error:\n', e.message);
         return false;
     };

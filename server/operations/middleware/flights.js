@@ -48,7 +48,7 @@ const getAvailableOptions = async (req, res) => {
     const options = getOptionsForAllPaths(prices.data, paths, company_name);
 
     // if no options were found
-    if(options === []) return res.status(404).send('No options for requested selection');
+    if(options.length === 0) return res.status(404).send('No options for requested selection');
 
     // sort results if filter is requested
     if(filter === 'price') quickSort(options, 0, options.length - 1, byPrice);

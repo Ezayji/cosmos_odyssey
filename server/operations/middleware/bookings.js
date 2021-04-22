@@ -51,6 +51,9 @@ const getAllBookings = async (req, res) => {
     
     // query failed
     if(!bookings) return res.status(500).send('Something went wrong, please try again');
+
+    // no available bookings
+    if(bookings.length === 0) return res.status(404).send('No available bookings at the moment');
     
     // query was successful
     res.status(200).send(bookings);

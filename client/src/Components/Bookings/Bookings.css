@@ -1,0 +1,35 @@
+/* BOOKINGS */
+
+.bookings-page{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bookings-page-content{
+    width: 75%;
+
+}
+
+.bookings-header{
+    margin: 10px 0;
+}
+
+@media only screen and (max-width: 480px){
+    .bookings-page-content{
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .bookings-page-content{
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .bookings-page-content{
+        width: 40%;
+    }
+}

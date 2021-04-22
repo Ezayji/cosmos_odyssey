@@ -15,6 +15,7 @@ export async function getFlights(data) {
         const response = await axios.get(url);
         return response.data;
     } catch (e) {
+        if(e.response.data === 'No options for requested selection') return { error: e.response.data };
         console.log('Flight request error:\n', e)
         return false;
     };
