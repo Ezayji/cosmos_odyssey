@@ -77,3 +77,9 @@
 #margin-top{
     margin-top: 5px;
 }
+
+@media only screen and (max-width: 350px){
+    .booking-time-price h3{
+        font-size: 18px;
+    }
+}

@@ -1,7 +1,8 @@
 # Cosmos Odyssey
 
 An assignement by Uptime OÜ<br/>
-Created by **Ezayji** in April 2021
+Created by **Ezayji** in April 2021 <br/>
+[Live Version](https://cosmos-odyssey.netlify.app) <br/>
 
 ---
 
